@@ -1,0 +1,4 @@
+<h2>Список авто:</h2>
+<ul>
+    <li *ngFor="let car of cars" (click)="onSelect(car)">{{ car.id }} - {{ car.name }}</li>
+</ul>
