@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-import { Car } from "../shared/car";
 import { CarService } from "../shared/car.service";
+import { Car } from "../shared/car"
 
 @Component({
     moduleId: module.id,
@@ -11,18 +10,16 @@ import { CarService } from "../shared/car.service";
     templateUrl: 'cars-list.component.html',
 })
 export class CarsListComponent implements OnInit{
-    cars: Car[];
-    items: FirebaseListObservable<any[]>;
+    cars: Array<{}>;
     
-    constructor(private router: Router, private carService: CarService, private db: AngularFireDatabase){
+    constructor(private router: Router, private carService: CarService){
         
     }
     
     ngOnInit(){
         this.carService // обращаемся к сервису
             .getAll()   // получаем Promise 
-            .then(result => this.cars = result); // как только Promise перейдет в состояние resolved результат его работы присваиваем свойству cars
-        this.items = this.db.list('/cars');
+            .subscribe(result => this.cars = result); 
     }
     
     onSelect(selected: Car) {

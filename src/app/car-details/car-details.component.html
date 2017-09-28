@@ -2,5 +2,7 @@
 	<h2>Selected Phrase</h2>
 	Id: {{car.id}} <br /> 
     Name: {{car.name}} <br />
+    Price: {{car.price}} <br />
+    <p *ngFor="let item of car.img">{{ item }}</p>
 </div>
 <button (click)="goToCarsList()">Go Back</button>

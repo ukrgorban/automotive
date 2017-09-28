@@ -1,28 +1,34 @@
 import { Injectable } from "@angular/core";
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-import { Car } from "./car";
-
-let cars = [
-    new Car(1, "Skoda"),
-    new Car(2, "Mazda"),
-    new Car(3, "Lada")
-];
-
-// Promise, который сразу переходит в состояние resolved с данными из массива cars
-let carsPromise = Promise.resolve(cars);
-
-// Сервис для работы с данными.
 @Injectable()
 export class CarService {
-
-    // Метод для получения всех cars. Возвращает Promise с массивом Car
-    getAll(): Promise<Car[]> {
-        return carsPromise;
+    
+    constructor(private db: AngularFireDatabase){}
+    
+    // Метод для получения всех cars. Возвращает Observable с массивом
+    getAll(): FirebaseListObservable<any[]> {
+        return this.db.list('/cars');
     }
-
-    // Метод для получения car по id. Возвращает Promise c экземпляром Car
-    getCar(id: number): Promise<Car> {
-        return carsPromise
-            .then(cars => cars.find(x => x.id == id));
+    
+    // Метод для получения car по id. Возвращает Observable с массивом
+    getCar(id: number){
+        id = id - 1;
+        return this.db.list('/cars/'+id);
+    }
+    
+    // Метод преобразование массива в объект 
+    arrToObject(arr): {}{
+        let obj = {};
+        
+        for(let i = 0; i < arr.length; i++){
+            if(arr[i].$value == undefined){
+                obj[arr[i].$key] = arr[i];
+            }else{
+                obj[arr[i].$key] = arr[i].$value;
+            }
+        }
+        
+        return obj;
     }
 }
