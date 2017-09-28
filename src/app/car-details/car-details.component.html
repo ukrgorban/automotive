@@ -3,6 +3,6 @@
 	Id: {{car.id}} <br /> 
     Name: {{car.name}} <br />
     Price: {{car.price}} <br />
-    <p *ngFor="let item of car.img">{{ item }}</p>
+    <img *ngFor="let item of car.img" src="../../assets/img/{{item}}"item>
 </div>
-<button (click)="goToCarsList()">Go Back</button>
+<button class="ui button" (click)="goToCarsList()">Go Back</button>

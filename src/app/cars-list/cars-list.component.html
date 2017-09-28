@@ -1,12 +1,25 @@
-<h2>Список авто:</h2>
-<ul>
-    <li *ngFor="let car of cars" (click)="onSelect(car)">{{ car.id }} - {{ car.name }}</li>
-</ul>
-
-
-
-  <ul>
-    <li *ngFor="let item of items | async">
-       {{ item.name }} - {{ item.price }} - {{ item.id }}
-    </li>
-  </ul>
+<div class="ui four doubling stackable link cards">
+    <div class="card" *ngFor="let car of cars" (click)="onSelect(car)">
+        <div class="image">
+            <img src="../../assets/img/{{ car.img[0] }}">
+        </div>
+        <div class="content">
+            <div class="header">{{ car.name }}</div>
+            <div class="meta">
+                <span class="make">{{ car.make }}</span>
+            </div>
+            <div class="description">
+                {{ car.description }}
+            </div>
+        </div>
+        <div class="extra content">
+            <span class="right floated">
+                Год выпуска: <span> {{ car.year }}</span>
+            </span>
+            <span class="price">
+                <i class="dollar icon"></i>
+                {{ car.price }}
+            </span>
+        </div>
+    </div>
+</div>
