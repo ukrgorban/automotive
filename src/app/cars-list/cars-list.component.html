@@ -2,3 +2,11 @@
 <ul>
     <li *ngFor="let car of cars" (click)="onSelect(car)">{{ car.id }} - {{ car.name }}</li>
 </ul>
+
+
+
+  <ul>
+    <li *ngFor="let item of items | async">
+       {{ item.name }} - {{ item.price }} - {{ item.id }}
+    </li>
+  </ul>

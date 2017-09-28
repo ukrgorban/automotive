@@ -4,6 +4,10 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
 // components
 //import { HomeComponent } from './home/home.component';
@@ -23,6 +27,9 @@ import { CarService } from './shared/car.service';
   imports: [
       BrowserModule,
       RouterModule.forRoot(routes),
+      AngularFireModule.initializeApp(environment.firebase),
+      AngularFireDatabaseModule,
+      AngularFireAuthModule 
   ],
   providers: [CarService],
   bootstrap: [AppComponent]
