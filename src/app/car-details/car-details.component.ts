@@ -15,14 +15,16 @@ export class CarDetailsComponent implements OnInit{
     
     ngOnInit(){
         this.activatedRoute.params.forEach((params: Params) => {
-            let id = +params["id"]; // конвертируем значение параметра id в тип number
-            this.service.getCar(id).subscribe(
-                result =>{
-                    this.car = this.service.arrToObject(result);
-                    this.bigImg = this.car.img[0];
-                }  
-            );
-        })
+            let id = +params["id"]; // конвертируем значение параметра id в тип number 
+            
+            this.service.getAll().subscribe(result => {//получаем все авто
+                let arrIndex = this.service.findIndex(result, id);//поиск нужного объекта по id
+                this.car = result[arrIndex];
+                this.bigImg = this.car.img[0];//основная картинка
+            });
+        });
+        
+
     }
     goToCarsList(){
         this.router.navigate(["cars"]);

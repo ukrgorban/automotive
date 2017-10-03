@@ -16,6 +16,19 @@ export class CarService {
         id = id - 1;
         return this.db.list('/cars/'+id);
     }
+    
+    //определение индекса массива по id объекта
+    findIndex(arr, id){
+        if(arr.length > 0){
+            for(let i = 0; i < arr.length; i++){
+                let obj = arr[i];
+                if(obj.id === id){
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
 
     // Метод преобразование массива в объект 
     arrToObject(arr): {}{
