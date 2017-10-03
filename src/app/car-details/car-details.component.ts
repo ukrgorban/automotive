@@ -8,7 +8,8 @@ import { CarService } from "../shared/car.service";
     templateUrl: 'car-details.component.html',
 })
 export class CarDetailsComponent implements OnInit{
-    car: {};
+    car;
+    bigImg: string;
     
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private service: CarService){}
     
@@ -16,12 +17,20 @@ export class CarDetailsComponent implements OnInit{
         this.activatedRoute.params.forEach((params: Params) => {
             let id = +params["id"]; // конвертируем значение параметра id в тип number
             this.service.getCar(id).subscribe(
-                result =>  this.car = this.service.arrToObject(result)
+                result =>{
+                    this.car = this.service.arrToObject(result);
+                    this.bigImg = this.car.img[0];
+                }  
             );
         })
-        
     }
     goToCarsList(){
         this.router.navigate(["cars"]);
+    }
+    
+    changeImage(e){
+        let src = e.target.src;
+        let srcPos = src.lastIndexOf("/");
+        this.bigImg = src.substring(srcPos + 1);
     }
 }

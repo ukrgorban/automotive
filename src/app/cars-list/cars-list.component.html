@@ -1,25 +1,62 @@
-<div class="ui four doubling stackable link cards">
-    <div class="card" *ngFor="let car of cars" (click)="onSelect(car)">
-        <div class="image">
-            <img src="../../assets/img/{{ car.img[0] }}">
-        </div>
-        <div class="content">
-            <div class="header">{{ car.name }}</div>
-            <div class="meta">
-                <span class="make">{{ car.make }}</span>
+<div class="ui fluid action input">
+  <input type="text" placeholder="Поиск...">
+  <div class="ui button">Поиск</div>
+</div>
+<div class="ui form">
+  <!--<div class="inline fields">
+    <label for="fruit">Сортировать по:</label>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="fruit" checked="" tabindex="0" class="hidden">
+        <label>Марка</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="fruit" tabindex="0" class="hidden">
+        <label>Цена</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="fruit" tabindex="0" class="hidden">
+        <label>Год выпуска</label>
+      </div>
+    </div>
+  </div>-->
+</div>
+<div *ngIf="cars; else elseBlock">
+    <div class="ui four doubling stackable link cards">
+        <div class="card" *ngFor="let car of cars" (click)="onSelect(car)">
+            <div class="image">
+                <img src="../../assets/img/{{ car.img[0] }}">
             </div>
-            <div class="description">
-                {{ car.description }}
+            <div class="content">
+                <div class="header">{{ car.name }}</div>
+                <div class="meta">
+                    <span class="make">{{ car.make }}</span>
+                </div>
+                <div class="description">
+                    {{ car.description }}
+                </div>
             </div>
-        </div>
-        <div class="extra content">
-            <span class="right floated">
-                Год выпуска: <span> {{ car.year }}</span>
-            </span>
-            <span class="price">
-                <i class="dollar icon"></i>
-                {{ car.price }}
-            </span>
+            <div class="extra content">
+                <span class="right floated">
+                    Год выпуска: <span> {{ car.year }}</span>
+                </span>
+                <span class="price">
+                    <i class="dollar icon"></i>
+                    {{ car.price }}
+                </span>
+            </div>
         </div>
     </div>
+    <div class="load">
+        <button class="fluid ui button">Загрузить еще</button>
+    </div>
 </div>
+<ng-template #elseBlock >
+      <div class="ui active dimmer">
+        <div class="ui indeterminate text loader">Loading..</div>
+      </div>
+</ng-template>

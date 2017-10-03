@@ -16,7 +16,7 @@ export class CarService {
         id = id - 1;
         return this.db.list('/cars/'+id);
     }
-    
+
     // Метод преобразование массива в объект 
     arrToObject(arr): {}{
         let obj = {};

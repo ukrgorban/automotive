@@ -1,8 +1,34 @@
-<div *ngIf="car">
-	<h2>Selected Phrase</h2>
-	Id: {{car.id}} <br /> 
-    Name: {{car.name}} <br />
-    Price: {{car.price}} <br />
-    <img *ngFor="let item of car.img" src="../../assets/img/{{item}}"item>
+<div *ngIf="car; else elseBlock">
+    <div class="ui big breadcrumb">
+        <a class="section" routerLink="/cars">Home</a>
+        <i class="right chevron icon divider"></i>
+        <a class="section" routerLink="/cars">Cars</a>
+        <i class="right chevron icon divider"></i>
+        <div class="active section">{{car.name}}</div>
+    </div>
+    <div class="ui segment stackable two column grid details">
+        <div class="column">
+            <div class="big_image">
+                <img class="ui fluid image" src="../../assets/img/{{bigImg}}">
+            </div>
+            <div class="ui three column grid thumb">
+                <div class="column" *ngFor="let item of car.img">
+                    <img class="ui image" src="../../assets/img/{{item}}" (click)="changeImage($event)">
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <h2>{{car.name}}</h2>
+            <p>Производитель: <span>{{car.make}}</span></p>
+            <p>Год выпуска: <span>{{car.year}} г</span></p>
+            <p class="price">Цена: <span>{{car.price}} $</span></p>
+            <p class="description">{{car.description}}</p>
+            <button class="ui button" (click)="goToCarsList()">Назад</button>
+        </div>
+    </div>
 </div>
-<button class="ui button" (click)="goToCarsList()">Go Back</button>
+<ng-template #elseBlock >
+      <div class="ui active dimmer">
+        <div class="ui indeterminate text loader">Loading..</div>
+      </div>
+</ng-template>
