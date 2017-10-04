@@ -1,7 +1,6 @@
-<div class="ui fluid action input">
-  <input type="text" placeholder="Поиск по названию авто..." [(ngModel)]="data">
-  <div class="ui button" (click)="resetSearch()">Сброс</div>
-  <div class="ui button" (click)="search(data)">Поиск</div>
+<div class="ui fluid icon input">
+    <input type="text" placeholder="Поиск по названию авто..." [(ngModel)]="data">
+    <i class="search icon"></i>
 </div>
 <div class="ui form">
   <!--<div class="inline fields">
@@ -26,7 +25,7 @@
     </div>
   </div>-->
 </div>
-<div *ngIf="init; else elseBlock">
+<div *ngIf="init; else elseBlock" class="cars">
     <div class="ui four doubling stackable link cards">
         <div class="card" *ngFor="let car of cars | search: data" (click)="onSelect(car)">
             <div class="image">
@@ -51,9 +50,6 @@
                 </span>
             </div>
         </div>
-    </div>
-    <div class="load">
-        <button class="fluid ui button">Загрузить еще</button>
     </div>
 </div>
 <ng-template #elseBlock >

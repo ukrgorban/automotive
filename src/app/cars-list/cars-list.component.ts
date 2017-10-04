@@ -26,35 +26,7 @@ export class CarsListComponent implements OnInit{
             this.init = true;
         });
     }
-    
-    search(data){
-        this.data = data;
         
-        if(this.data){
-            this.carService // обращаемся к сервису
-                .getAll()
-                .subscribe((result) => {
-                    let res = this.carService.searchData(result, this.data, "name");
-                    if(res){
-                        this.cars =res;
-                    }else{
-                        alert("Таких авто нету");
-                    }
-            });
-            this.data = null;
-        }else{
-            alert("Введите данные");
-        }
-    }
-    
-    resetSearch(){
-        this.carService // обращаемся к сервису
-            .getAll()
-            .subscribe((result) => {
-            this.cars = result;
-        });
-    }
-    
     onSelect(selected: Car) {
         // При клике по элементу списка перенаправляем пользователя по адресу /car/id
         this.router.navigate(["car", selected.id]);
