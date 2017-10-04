@@ -18,12 +18,16 @@ import { CarDetailsComponent } from './car-details/car-details.component';
 // services
 import { CarService } from './shared/car.service';
 
+//pipes
+import { SearchPipe } from './pipes';
+
 @NgModule({
   declarations: [
       AppComponent,
       //HomeComponent,
       CarsListComponent,
-      CarDetailsComponent
+      CarDetailsComponent,
+      SearchPipe
   ],
   imports: [
       BrowserModule,

@@ -11,7 +11,7 @@ import { Car } from "../shared/car"
 })
 export class CarsListComponent implements OnInit{
     cars: Array<{}>;
-    data: string;
+    data: string = "";
     init: boolean = false;
     
     constructor(private router: Router, private carService: CarService){
@@ -53,20 +53,6 @@ export class CarsListComponent implements OnInit{
             .subscribe((result) => {
             this.cars = result;
         });
-    }
-    
-    searchKeyUp(data){
-        this.data = data;
-        this.carService // обращаемся к сервису
-            .getAll()
-            .subscribe((result) => {
-                let res = this.carService.searchData(result, this.data, "name");
-                if(res){
-                    this.cars = res;
-                }else{
-                    this.cars = null;
-                }
-            });   
     }
     
     onSelect(selected: Car) {
