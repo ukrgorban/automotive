@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SuiModule } from 'ng2-semantic-ui';
 
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
@@ -19,7 +20,11 @@ import { CarDetailsComponent } from './car-details/car-details.component';
 import { CarService } from './shared/car.service';
 
 //pipes
-import { SearchPipe } from './pipes';
+import { SearchPipe } from './pipes/search.pipe';
+import { FilterDuplicatingProperties } from './pipes/filterDuplicatingProperties.pipe';
+import { FilterMakePipe  } from './pipes/filterMake.pipe';
+import { SortYearPipe } from './pipes/sortYear.pipe';
+import { SortPricePipe } from './pipes/sortPrice.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,11 @@ import { SearchPipe } from './pipes';
       //HomeComponent,
       CarsListComponent,
       CarDetailsComponent,
-      SearchPipe
+      SearchPipe,
+      FilterDuplicatingProperties,
+      FilterMakePipe,
+      SortYearPipe,
+      SortPricePipe
   ],
   imports: [
       BrowserModule,
@@ -35,7 +44,8 @@ import { SearchPipe } from './pipes';
       RouterModule.forRoot(routes),
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireDatabaseModule,
-      AngularFireAuthModule 
+      AngularFireAuthModule,
+      SuiModule
   ],
   providers: [CarService],
   bootstrap: [AppComponent]

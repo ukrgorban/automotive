@@ -8,12 +8,19 @@ import { Car } from "../shared/car"
     moduleId: module.id,
     selector: 'cars-list',
     templateUrl: 'cars-list.component.html',
+    styleUrls: ["cars-list.component.css"]
 })
 export class CarsListComponent implements OnInit{
     cars: Array<{}>;
     data: string = "";
     init: boolean = false;
+    make = null;
+    checkYear = false;
+    checkPrice = false;
     
+/* test */
+
+/* test */
     constructor(private router: Router, private carService: CarService){
         
     }

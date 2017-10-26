@@ -1,33 +1,27 @@
-<div class="ui fluid icon input">
-    <input type="text" placeholder="Поиск по названию авто..." [(ngModel)]="data">
-    <i class="search icon"></i>
-</div>
-<div class="ui form">
-  <!--<div class="inline fields">
-    <label for="fruit">Сортировать по:</label>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" name="fruit" checked="" tabindex="0" class="hidden">
-        <label>Марка</label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" name="fruit" tabindex="0" class="hidden">
-        <label>Цена</label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" name="fruit" tabindex="0" class="hidden">
-        <label>Год выпуска</label>
-      </div>
-    </div>
-  </div>-->
-</div>
 <div *ngIf="init; else elseBlock" class="cars">
+    <div class="ui segments">
+        <div class="ui segment" id="filters">
+            <div id="sort">
+                <sui-select placeholder="Марка авто" [(ngModel)]="make">
+                    <sui-select-option *ngFor="let car of cars | filterDuplicatingProperties "  value="{{ car.make }}"></sui-select-option>
+                </sui-select>
+                <div class="ui checkbox">
+                  <input type="checkbox" name="year" [checked]="checkYear" [(ngModel)]="checkYear" >
+                  <label>Год выпуска</label>
+                </div>
+                <div class="ui checkbox">
+                  <input type="checkbox" name="price" [checked]="checkPrice" [(ngModel)]="checkPrice" >
+                  <label>Цена</label>
+                </div>
+            </div>
+            <div class="ui icon input" id="search">
+                <input type="text" placeholder="Поиск по названию авто..." [(ngModel)]="data">
+                <i class="search icon"></i>
+            </div>
+        </div>
+    </div>
     <div class="ui four doubling stackable link cards">
-        <div class="card" *ngFor="let car of cars | search: data" (click)="onSelect(car)">
+        <div class="card" *ngFor="let car of cars | search: data | filterMake: make | sortYear: checkYear | sortPrice: checkPrice" (click)="onSelect(car)">
             <div class="image">
                 <img src="../../assets/img/{{ car.img[0] }}">
             </div>

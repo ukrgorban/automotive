@@ -1,0 +1,29 @@
+#filters{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#search{
+    flex-grow: 1;
+}
+
+.checkbox{
+    margin: 15px;
+}
+
+.ui.segments{
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 400px){
+    #sort{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .checkbox{
+        margin: 15px 15px 15px 0;
+    }
+}
